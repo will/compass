@@ -8,6 +8,9 @@ module Compass
       def configure!
         read_project_configuration
         Compass.configuration.set_maybe(options)
+        if File.exists?(Compass.configuration.extensions_path)
+          Compass::Frameworks.discover(Compass.configuration.extensions_path)
+        end
         Compass.configuration.default_all(installer.configuration_defaults)
         Compass.configuration.set_defaults!
       end

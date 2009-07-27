@@ -12,6 +12,7 @@ module Compass
       :sass_dir,
       :images_dir,
       :javascripts_dir,
+      :extensions_dir,
       :output_style,
       :environment,
       :relative_assets,
@@ -96,6 +97,10 @@ module Compass
       "images"
     end
 
+    def default_extensions_dir
+      "extensions"
+    end
+
     def default_http_path
       "/"
     end
@@ -140,6 +145,12 @@ module Compass
     def css_path
       if project_path && css_dir
         File.join(project_path, css_dir)
+      end
+    end
+
+    def extensions_path
+      if project_path
+        File.join(project_path, extensions_dir || default_extensions_dir)
       end
     end
 
